@@ -47,3 +47,23 @@ def download(request):
     response = FileResponse(file, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=JobApplication'
     return response
+
+
+def getOutputFromChatGPT():
+    pass
+
+
+def compileToPDF():
+    pass
+
+
+def checkIfLatexCompiled():
+    pass
+
+
+def createNameForPDF():
+    pass
+
+
+def getJsonData():
+    pass

@@ -37,7 +37,7 @@
       </div>
       <div class="col-md-6">
         <label for="Position">Position</label>
-        <input type="text" id="Position" class="form-control">
+        <input type="text" id="position" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="sectorOfTheCompany">Sector</label>
@@ -46,6 +46,10 @@
       <div class="col-md-6">
         <label for="positionNow">Position now (leave empty if you are not working)</label>
         <input type="text" id="positionNow" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="companyNow">Company now (leave empty if you are not working)</label>
+        <input type="text" id="companyNow" class="form-control">
       </div>
     </div>
 	<div class="row">
@@ -61,7 +65,7 @@
 	<div class="row">
 	  <div class="col-md-6">
 	    <label for="multiline">Work experience</label>
-	    <textarea id="workExperience" class="form-control" rows="4"></textarea>
+	    <textarea id="experience" class="form-control" rows="4"></textarea>
 	  </div>
 	  <div class="col-md-6">
 	    <label for="multiline">Job description</label>
@@ -72,9 +76,10 @@
     <br><br>
     <div class="row">
       <div class="col-md-12">
-	      <center><a href="{% url 'download' %}" download><button class="btn btn-primary btn-lg" >Submit</button></center></a>
+	      <center><a href="{% url 'download' %}" download><button id="submit" class="btn btn-primary btn-lg" >Submit</button></center></a>
       </div>
     </div>
   </div>
+  <script src = "app.js"></script>
 </body>
 </html>
