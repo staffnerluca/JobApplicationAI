@@ -56,27 +56,30 @@
         <input type="text" id="positionNow" class="form-control">
       </div>
     </div>
-	<div class="row">
-	  <div class="col-md-6">
-	    <label for="multiline">Education</label>
-	    <textarea id="education" class="form-control" rows="4"></textarea>
-	  </div>
-	  <div class="col-md-6">
-	    <label for="multiline">Skills</label>
-	    <textarea id="skills" class="form-control" rows="4"></textarea>
-	  </div>
-	</div>
-	<div class="row">
-	  <div class="col-md-6">
-	    <label for="multiline">Work experience</label>
-	    <textarea id="workExperience" class="form-control" rows="4"></textarea>
-	  </div>
-	  <div class="col-md-6">
-	    <label for="multiline">Job description</label>
-	    <textarea id="jobDescription" class="form-control" rows="4"></textarea>
-	  </div>
-	</div>
-
+    <div class="row">
+      <div class="col-md-12">
+        <label for="multiline">Education</label>
+        <textarea id="education" class="form-control" rows="4"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="multiline">Skills</label>
+        <textarea id="skills" class="form-control" rows="4"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="multiline">Work experience</label>
+        <textarea id="workExperience" class="form-control" rows="4"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="multiline">Job description</label>
+        <textarea id="jobDescription" class="form-control" rows="4"></textarea>
+      </div>
+    </div>
     <br><br>
     <div class="row">
       <div class="col-md-12">
@@ -86,3 +89,4 @@
   </div>
 </body>
 </html>
+
