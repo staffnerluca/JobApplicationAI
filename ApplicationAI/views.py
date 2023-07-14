@@ -3,6 +3,7 @@ import os
 from django.http import FileResponse, HttpResponse
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
 
 def index(request):
@@ -23,8 +24,20 @@ def register(request):
     return render(request, "register.html", {"form": form})
 
 
-def login(request):
-    return HttpResponse("Hello World")
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('app')
+        else:
+            #TODO need to include error message
+            error_message = "Invalid username or password"
+            return render(request, 'index.html', {'error_message': error_message})
+    else:
+        return render(request, 'index.html')
 
 
 def download(request):
