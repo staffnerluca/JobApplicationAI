@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import os
-from django.http import FileResponse, HttpResponse
+import json
+from django.http import FileResponse, HttpResponse, JsonResponse
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
@@ -65,5 +66,13 @@ def createNameForPDF():
     pass
 
 
-def getJsonData():
+def getJsonData(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        user_input = data.get("input", None)
+        if user_input:
+            print(user_input)
+
+
+def submitPressed():
     pass

@@ -80,6 +80,52 @@
       </div>
     </div>
   </div>
-  <script src = "app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script>
+	  function getURLForJSON(){
+		  var cPath = window.location.pathname;
+		  return cPath.replace('/app', '/getJsonData')
+	  }
+
+	    $(document).ready(function() {
+	      $("#submit").click(function() {
+		const iFullName = $("#name").val();
+		const iCompanyName = $("#companyName").val();
+		const iPosition = $("#position").val();
+		const iSector = $("#sector").val();
+		const iPositionNow = $("#positionNow").val();
+		const iCompanyNow = $("#companyNow").val();
+		const iEducation = $("#education").val();
+		const iSkills = $("#skills").val();
+		const iExperience = $("#experience").val();
+		const iJobDescription = $("#jobDescription").val();
+		const data = {
+		  fullName: iFullName,
+		  companyName: iCompanyName,
+		  position: iPosition,
+		  sector: iSector,
+		  positionNow: iPositionNow,
+		  companyNow: iCompanyNow,
+		  education: iEducation,
+		  skills: iSkills,
+		  experience: iExperience,
+		  jobDescription: iJobDescription
+		};
+		$.ajax({
+		  type: "POST",
+		  url: getURLForJSON,
+		  data: JSON.stringify(data),
+		});
+	      });
+	    });
+
+	    function triggerAlarm() {
+	      alert("It works");
+	    }
+
+	    window.onload = function() {
+	      triggerAlarm();
+	    };
+  </script>
 </body>
 </html>

@@ -32,3 +32,10 @@
 		 });
 	 });
  });
+function triggerAlarm(){
+	alert("It works")
+}
+
+window.onload(function(){
+	triggerAlarm();
+}
