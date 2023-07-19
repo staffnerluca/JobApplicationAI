@@ -52,11 +52,23 @@ def download(request):
 
 
 def createPrompt(data):
-
+    prompt = "Write a short and beautiful CV in LaTex. "
+    prompt += "The name of the applicant is "+data[name]+"; "
+    prompt += "He/she is applying to a position as "+data[position]+"; "
+    prompt += "at the company "+data[companyName]+"; "
+    prompt += "that works in the "+data[sector]+" sector; "
+    prompt += "He/she is currently working at "+data[currentCompanyName]+" "
+    prompt += "as a "+data[currentJob]+"; "
+    prompt += "Education: "+data[education]+"; "
+    prompt += "Skills: "+data[skills]+"; "
+    prompt += "Work Experience: "+data[workExperience]+"; "
+    prompt += "Achievements: "+data[achievements]+"; "
+    prompt += "Side Projects: "+data[sideProjects]+"; "
+    return prompt
 
 
 def getOutputFromChatGPT():
-   pass 
+    pass 
 
 
 def compileToPDF():
