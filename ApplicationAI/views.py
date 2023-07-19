@@ -5,6 +5,7 @@ from django.http import FileResponse, HttpResponse, JsonResponse
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+import openai
 
 
 def index(request):
@@ -50,8 +51,12 @@ def download(request):
     return response
 
 
+def createPrompt(data):
+
+
+
 def getOutputFromChatGPT():
-    pass
+   pass 
 
 
 def compileToPDF():
@@ -69,9 +74,16 @@ def createNameForPDF():
 def getJsonData(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        user_input = data.get("input", None)
+        user_input = data.get("user_input", None)  # Use the correct key here
         if user_input:
             print(user_input)
+            # Perform other operations with user_input
+
+            # Return a JSON response indicating success
+            return JsonResponse({'message': 'Data received and processed successfully'})
+
+    # Return a JSON response for unsupported HTTP methods or missing user_input
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
 def submitPressed():
