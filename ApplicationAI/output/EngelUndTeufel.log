@@ -1,0 +1,383 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.19)  29 JUL 2023 10:10
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**ApplicationAI/output/EngelUndTeufel.tex
+(./ApplicationAI/output/EngelUndTeufel.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count193
+\Gm@cntv=\count194
+\c@Gm@tempcnt=\count195
+\Gm@bindingoffset=\dimen139
+\Gm@wd@mp=\dimen140
+\Gm@odd@mp=\dimen141
+\Gm@even@mp=\dimen142
+\Gm@layoutwidth=\dimen143
+\Gm@layoutheight=\dimen144
+\Gm@layouthoffset=\dimen145
+\Gm@layoutvoffset=\dimen146
+\Gm@dimlist=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks18
+\verbatim@line=\toks19
+\verbatim@in@stream=\read2
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks20
+\inpenc@posthook=\toks21
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2022/01/26 3.70 The Babel package
+\babel@savecnt=\count196
+\U@D=\dimen147
+\l@unhyphenated=\language87
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read3
+\bbl@dirlevel=\count197
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngerman.ldf
+Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthogra
+phy)
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+Language: ngermanb 2021/02/27 v2.13 German support for babel (post-1996 orthogr
+aphy)
+Package babel Info: Making " an active character on input line 122.
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count198
+\l__pdf_internal_box=\box50
+)
+(ApplicationAI/output/EngelUndTeufel.aux)
+\openout1 = `EngelUndTeufel.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(40.97238pt, 239.00209pt, 61.45859pt)
+* v-part:(T,H,B)=(64.87292pt, 378.42pt, 97.30943pt)
+* \paperwidth=341.43306pt
+* \paperheight=540.60236pt
+* \textwidth=239.00209pt
+* \textheight=378.42pt
+* \oddsidemargin=-31.2976pt
+* \evensidemargin=-10.8114pt
+* \topmargin=-44.39706pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
+Overfull \hbox (0.13509pt too wide) in paragraph at lines 57--58
+\T1/cmr/m/n/10.95 Diese Frau fas-zi-nier-te mich. Sie war ganz in schwarz
+ []
+
+[7]
+Overfull \hbox (2.00394pt too wide) in paragraph at lines 67--68
+[]\T1/cmr/m/n/10.95 ^^TTötet es einen so-fort, wenn man es ein-nimmt?^^S 
+ []
+
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+
+ []
+
+[10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+
+ []
+
+
+Overfull \hbox (1.0303pt too wide) in paragraph at lines 99--100
+\T1/cmr/m/n/10.95 zu-schät-zen und ich ver-such-te auch mei-nen Ver-stand
+ []
+
+[12] [13] [14] [15]
+Overfull \hbox (2.31357pt too wide) in paragraph at lines 114--115
+[]\T1/cmr/m/n/10.95 ^^TSchatz, wie-so wirst du denn gleich so un-freund-
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
+
+ []
+
+[17] [18] [19] [20]
+Overfull \hbox (1.54948pt too wide) in paragraph at lines 149--150
+\T1/cmr/m/n/10.95 mei-ner Ein-schät-zung über-schau-bar, da sie mich erst
+ []
+
+[21]
+Overfull \hbox (2.00157pt too wide) in paragraph at lines 153--154
+[]\T1/cmr/m/n/10.95 Ich kam erst fünf Mi-nu-ten be-vor ich ge-hen muss-
+ []
+
+
+Overfull \hbox (6.69514pt too wide) in paragraph at lines 153--154
+\T1/cmr/m/n/10.95 You-Tu-be Vi-deos zum The-ma an-de-re Men-schen über-
+ []
+
+
+Overfull \hbox (9.28326pt too wide) in paragraph at lines 155--156
+[]\T1/cmr/m/n/10.95 Dort an-ge-kom-men grüÿ-te mich ei-ner mei-ner Klas-
+ []
+
+[22]
+Overfull \hbox (1.24727pt too wide) in paragraph at lines 157--158
+\T1/cmr/m/n/10.95 ver-nein-te und es ent-brann-te ei-ne Dis-kus-si-on ob man
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
+
+ []
+
+[24] [25] [26] [27] [28] [29] [30]
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+ []
+
+[31] [32]
+Overfull \hbox (2.97995pt too wide) in paragraph at lines 230--231
+\T1/cmr/m/n/10.95 wirk-lich in-ter-es-siert wie-so Män-ner stär-ker sind, aber
+ []
+
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 232--233
+
+ []
+
+[34] [35] [36] [37] [38]
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+
+ []
+
+[39]
+Overfull \hbox (2.99733pt too wide) in paragraph at lines 271--272
+\T1/cmr/m/n/10.95 hat-te, über-stieg die Er-run-gen-schaf-ten der Men-schen
+ []
+
+[40] [41] [42] [43]
+Overfull \hbox (3.78304pt too wide) in paragraph at lines 302--303
+\T1/cmr/m/n/10.95 et-wa jetzt schon? Wa-ren mei-ne Lek-tio-nen et-wa nicht
+ []
+
+[44] [45] [46]
+Overfull \hbox (5.26622pt too wide) in paragraph at lines 315--316
+\T1/cmr/m/n/10.95 ei-ner freund-schaft-li-chen Um-ar-mung. Ich sah sie zwar
+ []
+
+[47]
+Overfull \hbox (1.33603pt too wide) in paragraph at lines 319--320
+[]\T1/cmr/m/n/10.95 Sie tausch-te mit je-dem der An-we-sen-den ein paar
+ []
+
+[48] [49]
+Overfull \hbox (0.22063pt too wide) in paragraph at lines 329--330
+\T1/cmr/m/n/10.95 einen oder ei-ne der An-we-sen-den ver-gif-tet. Du hältst
+ []
+
+[50]
+Underfull \hbox (badness 10000) in paragraph at lines 341--342
+
+ []
+
+[51] [52]
+Overfull \hbox (5.26628pt too wide) in paragraph at lines 351--352
+\T1/cmr/m/n/10.95 aus-wäh-len soll-te. Mit ih-rer un-glaub-li-chen Men-schen-
+ []
+
+
+Overfull \hbox (1.40742pt too wide) in paragraph at lines 351--352
+\T1/cmr/m/n/10.95 kennt-nis hat-te die-ser Teu-fel ver-mut-lich schon längst
+ []
+
+[53] [54] [55] [56] [57] [58]
+Overfull \hbox (4.23055pt too wide) in paragraph at lines 388--389
+[]\T1/cmr/m/n/10.95 Ungefähr um Mit-ter-nacht mach-ten ich und Chri-
+ []
+
+[59]
+Underfull \hbox (badness 10000) in paragraph at lines 390--391
+
+ []
+
+[60] [61] [62]
+Overfull \hbox (2.78372pt too wide) in paragraph at lines 413--414
+[]\T1/cmr/m/n/10.95 Unser Ma-the-leh-rer un-ter-rich-te-te auch Sport und
+ []
+
+
+Overfull \hbox (6.6988pt too wide) in paragraph at lines 413--414
+\T1/cmr/m/n/10.95 war ei-ner der bes-ten ös-ter-rei-chi-schen Eis-hockey Spie-
+ []
+
+[63]
+Overfull \hbox (1.3374pt too wide) in paragraph at lines 415--416
+\T1/cmr/m/n/10.95 Me-ter groÿ sein muss-te. Der Ein-dring-ling trug einen
+ []
+
+
+Overfull \hbox (0.55452pt too wide) in paragraph at lines 423--424
+\T1/cmr/m/n/10.95 ÿer^^S, mur-mel-te der Mann wei-ter und lä-chel-te leicht. 
+ []
+
+[64]
+Overfull \hbox (2.60605pt too wide) in paragraph at lines 431--432
+[]\T1/cmr/m/n/10.95 Ich ver-such-te zwar sei-nem An-griff aus-zu-wei-chen,
+ []
+
+[65]
+Overfull \hbox (9.50377pt too wide) in paragraph at lines 435--436
+[]\T1/cmr/m/n/10.95 Der Leh-rer er-wach-te aus sei-ner Tran-ce und Schlug
+ []
+
+
+Overfull \hbox (4.24503pt too wide) in paragraph at lines 437--438
+[]\T1/cmr/m/n/10.95 Mittlerweile hat-te ich mich wie-der er-ho-ben, auch
+ []
+
+[66]
+Overfull \hbox (10.11287pt too wide) in paragraph at lines 441--442
+[]\T1/cmr/m/n/10.95 Mit ver-ein-ten Kräf-ten füg-ten sie ihm ei-ni-ge schwe-
+ []
+
+[67] [68]
+Overfull \hbox (1.97261pt too wide) in paragraph at lines 461--462
+\T1/cmr/m/n/10.95 wel-che Qua-len du in dei-nem Le-ben durch-lit-ten hast,
+ []
+
+[69] [70] [71] [72] [73] [74]
+Underfull \hbox (badness 10000) in paragraph at lines 498--499
+
+ []
+
+[75] [76] [77] [78] [79]
+Overfull \hbox (3.64174pt too wide) in paragraph at lines 521--522
+\T1/cmr/m/n/10.95 nach ei-ner Wei-le ant-wor-te-te er: ^^TIch ha-be dich falsch
+
+ []
+
+[80] [81] [82] [83] [84]
+Underfull \hbox (badness 10000) in paragraph at lines 558--559
+
+ []
+
+[85]
+Overfull \hbox (2.02255pt too wide) in paragraph at lines 560--561
+\T1/cmr/m/n/10.95 astro-no-misch ho-hes Ge-halt ver-dien-te, woll-te er wohl
+ []
+
+
+Overfull \hbox (5.39778pt too wide) in paragraph at lines 562--563
+\T1/cmr/m/n/10.95 das Ein-rei-ÿen ei-nes Fin-ger-na-gels schon fast ein Trau-
+ []
+
+[86]
+Overfull \hbox (2.31029pt too wide) in paragraph at lines 572--573
+\T1/cmr/m/n/10.95 freut fest, dass uns nie-mand be-ob-ach-te-te und drück-
+ []
+
+[87] [88] [89] [90] [91] [92] [93] (ApplicationAI/output/EngelUndTeufel.aux) ) 
+Here is how much of TeX's memory you used:
+ 2370 strings out of 478287
+ 39329 string characters out of 5849289
+ 350015 words of memory out of 5000000
+ 20598 multiletter control sequences out of 15000+600000
+ 472212 words of font info for 33 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 55i,6n,62p,1209b,190s stack positions out of 5000i,500n,10000p,200000b,80000s
+{
+/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf/fo
+nts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/public/cm-
+super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on ApplicationAI/output/EngelUndTeufel.pdf (93 pages, 155775 byt
+es).
+PDF statistics:
+ 320 PDF objects out of 1000 (max. 8388607)
+ 217 compressed objects within 3 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -44,7 +44,10 @@ def login_view(request):
         return render(request, 'index.html')
 
 
-def download(fileName, dName):
+def download(request):
+    createCV(request)
+    fileName = "EngelUndTeufel.pdf"
+    dName = "CV.pdf"
     filePath = os.path.join(settings.BASE_DIR, "ApplicationAI/output", fileName)
     file = open(filePath, 'rb')
     response = FileResponse(file, content_type='application/pdf')
@@ -52,7 +55,7 @@ def download(fileName, dName):
     return response
 
 
-def createPrompt(data):
+def createPromptCV(data):
     prompt = "Write a short and beautiful CV in LaTex. "
     prompt += "The name of the applicant is "+data.GET["name"]+"; "
     prompt += "He/she is applying to a position as "+data.GET["position"]+" "
@@ -68,6 +71,14 @@ def createPrompt(data):
     return prompt
 
 
+def creastePromptCL(request):
+    pass
+
+
+def createPromptML(request):
+    pass
+
+
 def getOutputFromChatGPT(prompt, numTokens):
     response = ""
     return response
@@ -75,7 +86,9 @@ def getOutputFromChatGPT(prompt, numTokens):
 
 def compileToPDF():
     try:
-        pro = subprocess.Popen(["pdflatex", "ApplicationAI/output/EngelUndTeufel.tex"])
+        if not os.path.exists("ApplicationAI/output"):
+            os.makedirs("ApplicationAI/output")
+        pro = subprocess.Popen(["pdflatex", "-output-directory", "ApplicationAI/output", "ApplicationAI/output/EngelUndTeufel.tex"])
         pro.communicate()
         return True
     except subprocess.CalledProcessError as e:
@@ -87,16 +100,22 @@ def createNameForPDF():
     pass
 
 
-def createCV(request):
-    prompt = createPrompt(request)
+def createCV(request, ty):
+    match ty:
+        case "CV":
+            prompt = createPromptCV(request)
+        case "CL":
+            prompt = createPromptCL(request)
+        case "ML":
+            prompt = createPromptML(request)
     print(prompt)
     getOutputFromChatGPT(prompt, 1000)
     compileToPDF()
-    download("EngelUndTeufel.pdf", "CV.pdf")
 
 
 def getData(request):
     createCV(request)
+    return(HttpResponse("Hello from get Data"))
 
 
 def submitPressed():
