@@ -7,5 +7,5 @@ urlpatterns = [
         path("app", views.app, name = "app"),
         path("register", views.register, name = "register"),
         path("login", views.login_view, name = "login"),
-        path("getJsonData", views.getJsonData, name = "getJsonData")
+        path("getData", views.getData, name = "getData")
         ]

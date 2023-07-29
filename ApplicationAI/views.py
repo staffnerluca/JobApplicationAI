@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 import openai
+import subprocess
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -43,50 +44,59 @@ def login_view(request):
         return render(request, 'index.html')
 
 
-def download(request):
-    file_name = "dieKatastrophe.pdf"
-    file_path = os.path.join(settings.BASE_DIR, "ApplicationAI/output", file_name)
-    file = open(file_path, 'rb')
+def download(fileName, dName):
+    filePath = os.path.join(settings.BASE_DIR, "ApplicationAI/output", fileName)
+    file = open(filePath, 'rb')
     response = FileResponse(file, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=JobApplication'
+    response['Content-Disposition'] = 'attachment; filename='+dName
     return response
 
 
 def createPrompt(data):
     prompt = "Write a short and beautiful CV in LaTex. "
-    prompt += "The name of the applicant is "+data["name"]+"; "
-    prompt += "He/she is applying to a position as "+data["position"]+"; "
-    prompt += "at the company "+data["companyName"]+"; "
-    prompt += "that works in the "+data["sector"]+" sector; "
-    prompt += "He/she is currently working at "+data["currentCompanyName"]+" "
-    prompt += "as a "+data["currentJob"]+"; "
-    prompt += "Education: "+data["education"]+"; "
-    prompt += "Skills: "+data["skills"]+"; "
-    prompt += "Work Experience: "+data["workExperience"]+"; "
-    prompt += "Achievements: "+data["achievements"]+"; "
-    prompt += "Side Projects: "+data["sideProjects"]+"; "
+    prompt += "The name of the applicant is "+data.GET["name"]+"; "
+    prompt += "He/she is applying to a position as "+data.GET["position"]+" "
+    prompt += "at the company "+data.GET["companyName"]+"; "
+    prompt += "that works in the "+data.GET["sector"]+" sector; "
+    prompt += "He/she is currently working at "+data.GET["companyNow"]+" "
+    prompt += "as a "+data.GET["position"]+"; "
+    prompt += "Education: "+data.GET["education"]+"; "
+    prompt += "Skills: "+data.GET["skills"]+"; "
+    prompt += "Work Experience: "+data.GET["experience"]+"; "
+    prompt += "Achievements: "+data.GET["achievements"]+"; "
+    prompt += "Side Projects: "+data.GET["sideProjects"]+"; "
     return prompt
 
 
-def getOutputFromChatGPT():
-    pass
+def getOutputFromChatGPT(prompt, numTokens):
+    response = ""
+    return response
 
 
 def compileToPDF():
-    pass
-
-
-def checkIfLatexCompiled():
-    pass
+    try:
+        pro = subprocess.Popen(["pdflatex", "ApplicationAI/output/EngelUndTeufel.tex"])
+        pro.communicate()
+        return True
+    except subprocess.CalledProcessError as e:
+        print("Error: "+e)
+        return False
 
 
 def createNameForPDF():
     pass
 
 
-def getJsonData(request):
-    print(request.GET["name"])
-    return index(request)
+def createCV(request):
+    prompt = createPrompt(request)
+    print(prompt)
+    getOutputFromChatGPT(prompt, 1000)
+    compileToPDF()
+    download("EngelUndTeufel.pdf", "CV.pdf")
+
+
+def getData(request):
+    createCV(request)
 
 
 def submitPressed():
