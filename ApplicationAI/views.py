@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 import openai
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -53,22 +54,22 @@ def download(request):
 
 def createPrompt(data):
     prompt = "Write a short and beautiful CV in LaTex. "
-    prompt += "The name of the applicant is "+data[name]+"; "
-    prompt += "He/she is applying to a position as "+data[position]+"; "
-    prompt += "at the company "+data[companyName]+"; "
-    prompt += "that works in the "+data[sector]+" sector; "
-    prompt += "He/she is currently working at "+data[currentCompanyName]+" "
-    prompt += "as a "+data[currentJob]+"; "
-    prompt += "Education: "+data[education]+"; "
-    prompt += "Skills: "+data[skills]+"; "
-    prompt += "Work Experience: "+data[workExperience]+"; "
-    prompt += "Achievements: "+data[achievements]+"; "
-    prompt += "Side Projects: "+data[sideProjects]+"; "
+    prompt += "The name of the applicant is "+data["name"]+"; "
+    prompt += "He/she is applying to a position as "+data["position"]+"; "
+    prompt += "at the company "+data["companyName"]+"; "
+    prompt += "that works in the "+data["sector"]+" sector; "
+    prompt += "He/she is currently working at "+data["currentCompanyName"]+" "
+    prompt += "as a "+data["currentJob"]+"; "
+    prompt += "Education: "+data["education"]+"; "
+    prompt += "Skills: "+data["skills"]+"; "
+    prompt += "Work Experience: "+data["workExperience"]+"; "
+    prompt += "Achievements: "+data["achievements"]+"; "
+    prompt += "Side Projects: "+data["sideProjects"]+"; "
     return prompt
 
 
 def getOutputFromChatGPT():
-    pass 
+    pass
 
 
 def compileToPDF():
@@ -84,18 +85,8 @@ def createNameForPDF():
 
 
 def getJsonData(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        user_input = data.get("user_input", None)  # Use the correct key here
-        if user_input:
-            print(user_input)
-            # Perform other operations with user_input
-
-            # Return a JSON response indicating success
-            return JsonResponse({'message': 'Data received and processed successfully'})
-
-    # Return a JSON response for unsupported HTTP methods or missing user_input
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+    print(request.GET["name"])
+    return index(request)
 
 
 def submitPressed():

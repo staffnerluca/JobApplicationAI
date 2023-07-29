@@ -26,136 +26,73 @@
 	      <center><h1 class="tall-heading">Job-Applicaton.AI</h1></center>
       </div>
     </div>
+    <form action="getJsonData">
     <div class="row">
       <div class="col-md-6">
         <label for="name">Full Name</label>
-        <input type="text" id="name" class="form-control">
+        <input name = "name" type="text" id="name" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="companyName">Name of the company</label>
-        <input type="text" id="companyName" class="form-control">
+        <input name="companyName" type="text" id="companyName" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="Position">Position</label>
-        <input type="text" id="position" class="form-control">
+        <input name="Position" type="text" id="position" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="sectorOfTheCompany">Sector</label>
-        <input type="text" id="sectorOfTheCompany" class="form-control">
+        <input name="sector" type="text" id="sectorOfTheCompany" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="positionNow">Position now (leave empty if you are not working)</label>
-        <input type="text" id="positionNow" class="form-control">
+        <input name="positionNow" type="text" id="positionNow" class="form-control">
       </div>
       <div class="col-md-6">
         <label for="companyNow">Company now (leave empty if you are not working)</label>
-        <input type="text" id="companyNow" class="form-control">
+        <input name="companyNow" type="text" id="companyNow" class="form-control">
       </div>
     </div>
 	<div class="row">
 	  <div class="col-md-6">
 	    <label for="multiline">Education</label>
-	    <textarea id="education" class="form-control" rows="4"></textarea>
+	    <textarea name="education" id="education" class="form-control" rows="4"></textarea>
 	  </div>
 	  <div class="col-md-6">
 	    <label for="multiline">Skills</label>
-	    <textarea id="skills" class="form-control" rows="4"></textarea>
+	    <textarea name="skills" id="skills" class="form-control" rows="4"></textarea>
 	  </div>
 	</div>
 	<div class="row">
 	  <div class="col-md-6">
 	    <label for="multiline">Work experience</label>
-	    <textarea id="experience" class="form-control" rows="4"></textarea>
+	    <textarea name="experience" id="experience" class="form-control" rows="4"></textarea>
 	  </div>
 	  <div class="col-md-6">
 	    <label for="multiline">Achievements</label>
-	    <textarea id="achievements" class="form-control" rows="4"></textarea>
+	    <textarea name="achievements" id="achievements" class="form-control" rows="4"></textarea>
 	  </div>
 	</div>	
 	<div class="row">
 	  <div class="col-md-6">
 	    <label for="multiline">Side Projects</label>
-	    <textarea id="sideProjects" class="form-control" rows="4"></textarea>
+	    <textarea name="sideProjects" id="sideProjects" class="form-control" rows="4"></textarea>
 	  </div>
 	  <div class="col-md-6">
 	    <label for="multiline">Job description</label>
-	    <textarea id="jobDescription" class="form-control" rows="4"></textarea>
+	    <textarea name="jobDescription" id="jobDescription" class="form-control" rows="4"></textarea>
 	  </div>
 	</div>
 
     <br><br>
     <div class="row">
       <div class="col-md-12">
-	      <center><a href="{% url 'download' %}" download><button id="submit" class="btn btn-primary btn-lg" >Submit</button></center></a>
+	      <center><button id="submit" class="btn btn-primary btn-lg" onclick = "submit()">Submit</button></center>
       </div>
     </div>
   </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script>
-	function getCookie(name) {
-	  var cookieValue = null;
-	  if (document.cookie && document.cookie !== '') {
-	    var cookies = document.cookie.split(';');
-	    for (var i = 0; i < cookies.length; i++) {
-	      var cookie = cookies[i].trim();
-	      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-		cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-		break;
-	      }
-	    }
-	  }
-	  return cookieValue;
-	}
+</form>
+	<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-	function getURLForJSON() {
-	    var cPath = window.location.pathname;
-	    return cPath.replace('/app', '/getJsonData');
-	  }
-
-	  $(document).ready(function() {
-	    $("#submit").click(function() {
-	      const iFullName = $("#name").val();
-	      const iCompanyName = $("#companyName").val();
-	      const iPosition = $("#position").val();
-	      const iSector = $("#sector").val();
-	      const iPositionNow = $("#positionNow").val();
-	      const iCompanyNow = $("#companyNow").val();
-	      const iEducation = $("#education").val();
-	      const iSkills = $("#skills").val();
-	      const iExperience = $("#experience").val();
-	      const iJobDescription = $("#jobDescription").val();
-	      const data = {
-		fullName: iFullName,
-		companyName: iCompanyName,
-		position: iPosition,
-		sector: iSector,
-		positionNow: iPositionNow,
-		companyNow: iCompanyNow,
-		education: iEducation,
-		skills: iSkills,
-		experience: iExperience,
-		jobDescription: iJobDescription
-	      };
-	      $.ajax({
-		type: "POST",
-		url: getURLForJSON(), // Call the function to get the URL
-		data: JSON.stringify(data),
-		headers: {
-    		"X-CSRFToken": getCookie("csrftoken")
-  },
-	      })
-	      .done(function(response) {
-		if (response && response.success) {
-		  alert("Success!");
-		} else {
-		  alert("Error");
-		}
-	      })
-	      .fail(function(jqXHR, textStatus, errorThrown) {
-		alert("Error " + errorThrown);
-	      });
-	    });
-	  });
-  </script>
 </body>
 </html>
