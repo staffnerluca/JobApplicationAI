@@ -10,6 +10,7 @@ import subprocess
 from django.views.decorators.csrf import csrf_exempt
 
 
+# RETURN PAGES
 def index(request):
     return render(request, "index.html")
 
@@ -18,6 +19,7 @@ def app(request):
     return render(request, "app.html")
 
 
+# USER
 def register(request):
     form = UserCreationForm()
     if request.method == "POST":
@@ -44,17 +46,15 @@ def login_view(request):
         return render(request, 'index.html')
 
 
-def download(request):
-    createCV(request)
-    fileName = "EngelUndTeufel.pdf"
-    dName = "CV.pdf"
-    filePath = os.path.join(settings.BASE_DIR, "ApplicationAI/output", fileName)
-    file = open(filePath, 'rb')
-    response = FileResponse(file, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename='+dName
-    return response
+def updateUserNumber():
+    pass
 
 
+def saveUserDataToDB():
+    pass
+
+
+# PROMPT GENERATION
 def createPromptCV(data):
     prompt = "Write a short and beautiful CV in LaTex. "
     prompt += "The name of the applicant is "+data.GET["name"]+"; "
@@ -71,7 +71,7 @@ def createPromptCV(data):
     return prompt
 
 
-def creastePromptCL(request):
+def createPromptCL(request):
     pass
 
 
@@ -79,11 +79,13 @@ def createPromptML(request):
     pass
 
 
+# CHAT GPT
 def getOutputFromChatGPT(prompt, numTokens):
     response = ""
     return response
 
 
+# CREATE PDF
 def compileToPDF():
     try:
         if not os.path.exists("ApplicationAI/output"):
@@ -100,7 +102,7 @@ def createNameForPDF():
     pass
 
 
-def createCV(request, ty):
+def createDoc(request, ty):
     match ty:
         case "CV":
             prompt = createPromptCV(request)
@@ -113,10 +115,16 @@ def createCV(request, ty):
     compileToPDF()
 
 
-def getData(request):
-    createCV(request)
-    return(HttpResponse("Hello from get Data"))
-
-
-def submitPressed():
+def removeOldFiles(name):
     pass
+
+
+def download(request):
+    createDoc(request, "CV")
+    fileName = "EngelUndTeufel.pdf"
+    dName = "CV.pdf"
+    filePath = os.path.join(settings.BASE_DIR, "ApplicationAI/output", fileName)
+    file = open(filePath, 'rb')
+    response = FileResponse(file, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename='+dName
+    return response

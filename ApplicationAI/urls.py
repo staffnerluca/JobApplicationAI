@@ -6,6 +6,5 @@ urlpatterns = [
         path("download", views.download, name = "download"),
         path("app", views.app, name = "app"),
         path("register", views.register, name = "register"),
-        path("login", views.login_view, name = "login"),
-        path("getData", views.getData, name = "getData")
+        path("login", views.login_view, name = "login")
         ]
