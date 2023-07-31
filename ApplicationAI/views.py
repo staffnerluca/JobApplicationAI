@@ -3,12 +3,12 @@ import os
 import json
 from django.http import FileResponse, HttpResponse, JsonResponse
 from django.conf import settings
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 import openai
 import subprocess
 from django.views.decorators.csrf import csrf_exempt
-
+from .models import Users
+from .forms import fRegister
 
 # RETURN PAGES
 def index(request):
@@ -21,9 +21,9 @@ def app(request):
 
 # USER
 def register(request):
-    form = UserCreationForm()
+    form = fRegister()
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = fRegister(request.POST)
         if form.is_valid():
             form.save()
             return redirect("app")
