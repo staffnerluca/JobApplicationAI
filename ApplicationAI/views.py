@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
+from django.http import QueryDict
 import os
-import json
 from django.http import FileResponse, HttpResponse, JsonResponse
 from django.conf import settings
 from django.contrib.auth import authenticate, login
@@ -9,6 +9,11 @@ import subprocess
 from django.views.decorators.csrf import csrf_exempt
 from .models import Users
 from .forms import fRegister
+
+
+# GLOBAL vars
+openai.api_key = "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"
+
 
 # RETURN PAGES
 def index(request):
@@ -54,7 +59,7 @@ def saveUserDataToDB():
     pass
 
 
-# PROMPT GENERATION
+# PROMPT GENERATION AND GPT
 def createPromptCV(data):
     prompt = "Write a short and beautiful CV in LaTex. "
     prompt += "The name of the applicant is "+data.GET["name"]+"; "
@@ -62,7 +67,7 @@ def createPromptCV(data):
     prompt += "at the company "+data.GET["companyName"]+"; "
     prompt += "that works in the "+data.GET["sector"]+" sector; "
     prompt += "He/she is currently working at "+data.GET["companyNow"]+" "
-    prompt += "as a "+data.GET["position"]+"; "
+    prompt += "as a "+data.GET["positionNow"]+"; "
     prompt += "Education: "+data.GET["education"]+"; "
     prompt += "Skills: "+data.GET["skills"]+"; "
     prompt += "Work Experience: "+data.GET["experience"]+"; "
@@ -79,10 +84,17 @@ def createPromptML(request):
     pass
 
 
-# CHAT GPT
 def getOutputFromChatGPT(prompt, numTokens):
-    response = ""
-    return response
+    try:
+        response = openai.Completion.create(
+                engine = "text-davinci-002",
+                prompt = prompt,
+                max_tokens = numTokens
+        )
+        return response.choices[0].text.strip()
+    except Exception as e:
+        print("Error: "+e)
+        return "Error"
 
 
 # CREATE PDF
@@ -103,6 +115,7 @@ def createNameForPDF():
 
 
 def createDoc(request, ty):
+    request = createExampleData(request)
     match ty:
         case "CV":
             prompt = createPromptCV(request)
@@ -111,7 +124,7 @@ def createDoc(request, ty):
         case "ML":
             prompt = createPromptML(request)
     print(prompt)
-    getOutputFromChatGPT(prompt, 1000)
+    print(getOutputFromChatGPT(prompt, 10000))
     compileToPDF()
 
 
@@ -119,6 +132,7 @@ def removeOldFiles(name):
     pass
 
 
+# MAIN
 def download(request):
     createDoc(request, "CV")
     fileName = "EngelUndTeufel.pdf"
@@ -127,4 +141,22 @@ def download(request):
     file = open(filePath, 'rb')
     response = FileResponse(file, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename='+dName
+    return response
+
+
+# TESTS
+def createExampleData(response):
+    data = QueryDict(mutable=True)
+    data["name"] = "Luca Staffner"
+    data["position"] = "Software Engineer"
+    data["companyName"] = "Google"
+    data["sector"] = "Technology"
+    data["companyNow"] = "Twitter"
+    data["positionNow"] = "Data Scientist"
+    data["skills"] = "Python, Problem Solving, Statistics, C#"
+    data["experience"] = "Intern at Microsoft"
+    data["achievements"] = "Increased revenue by 5 %"
+    data["education"] = "2018-2021: University of Innsbruck Computer Science"
+    data["sideProjects"] = "Flappy Bird Clone"
+    response.GET = data
     return response
