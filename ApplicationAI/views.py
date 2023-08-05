@@ -51,17 +51,28 @@ def login_view(request):
         return render(request, 'index.html')
 
 
-def updateUserNumber():
-    pass
+def updateUserNumber(request):
+    user = Users.objects.get(id=request.user.id)
+    user.requestNumber += 1
+    user.save()
 
 
-def saveUserDataToDB():
-    pass
+def saveUserDataToDB(request):
+    addData = Users.objects.get(id=request.user.id)
+    addData.name = request.name
+    addData.compyNow = request.companyNow
+    addData.positionNow = request.positionNow
+    addData.education = request.education
+    addData.skill = request.skills
+    addData.experience = request.experience
+    addData.achievements = request.achievements
+    addData.sideProjects = request.sideProjects
+    addData.save()
 
 
 # PROMPT GENERATION AND GPT
-def createPromptCV(data):
-    prompt = "Write a short and beautiful CV in LaTex. "
+def createPrompt(data, ty):
+    prompt = f"Write a short and beautiful {ty} in LaTex. "
     prompt += "The name of the applicant is "+data.GET["name"]+"; "
     prompt += "He/she is applying to a position as "+data.GET["position"]+" "
     prompt += "at the company "+data.GET["companyName"]+"; "
@@ -74,14 +85,6 @@ def createPromptCV(data):
     prompt += "Achievements: "+data.GET["achievements"]+"; "
     prompt += "Side Projects: "+data.GET["sideProjects"]+"; "
     return prompt
-
-
-def createPromptCL(request):
-    pass
-
-
-def createPromptML(request):
-    pass
 
 
 def getOutputFromChatGPT(prompt, numTokens):
@@ -116,19 +119,17 @@ def createNameForPDF():
 
 def createDoc(request, ty):
     request = createExampleData(request)
-    match ty:
-        case "CV":
-            prompt = createPromptCV(request)
-        case "CL":
-            prompt = createPromptCL(request)
-        case "ML":
-            prompt = createPromptML(request)
+    prompt = createPrompt(request, ty)
     print(prompt)
     print(getOutputFromChatGPT(prompt, 10000))
     compileToPDF()
 
 
 def removeOldFiles(name):
+    pass
+
+
+def zipPDFs(request):
     pass
 
 
