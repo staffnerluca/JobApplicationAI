@@ -44,7 +44,7 @@ def login_view(request):
             login(request, user)
             return redirect('app')
         else:
-            #TODO need to include error message
+            # TODO need to include error message
             error_message = "Invalid username or password"
             return render(request, 'index.html', {'error_message': error_message})
     else:
@@ -96,12 +96,12 @@ def getOutputFromChatGPT(prompt, numTokens):
         )
         return response.choices[0].text.strip()
     except Exception as e:
-        print("Error: "+e)
+        print("Error: "+str(e))
         return "Error"
 
 
 # CREATE PDF
-def compileToPDF():
+def compileToPDF(file):
     try:
         if not os.path.exists("ApplicationAI/output"):
             os.makedirs("ApplicationAI/output")
@@ -109,20 +109,21 @@ def compileToPDF():
         pro.communicate()
         return True
     except subprocess.CalledProcessError as e:
-        print("Error: "+e)
+        print("Error: "+str(e))
         return False
 
 
-def createNameForPDF():
-    pass
+def createNameForPDF(ty):
+    return ty
 
 
 def createDoc(request, ty):
     request = createExampleData(request)
     prompt = createPrompt(request, ty)
     print(prompt)
-    print(getOutputFromChatGPT(prompt, 10000))
-    compileToPDF()
+    print(getOutputFromChatGPT(prompt, 3900))
+    name = createNameForPDF()
+    compileToPDF(name+".tex")
 
 
 def removeOldFiles(name):
