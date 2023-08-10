@@ -93,6 +93,33 @@
   </div>
 </form>
 	<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<script>
+	const translations ={
+		"Job-Application.AI": "Bewerbungen.AI",
+		"Full Name": "Name",
+		"Name of the company": "Name des Unternehmens",
+		"Position": "Position",
+		"Sector": "Branche",
+		"Position now (leave empty if you are not working)": 'Aktuelle Position (leer lassen, wenn Sie nicht arbeiten)',
+                "Company now (leave empty if you are not working)": "Aktuelles Unternehmen (leer lassen, wenn Sie nicht arbeiten)",
+		"Education": "Ausbildung",
+		"Skills": "Fähigkeiten",
+		"Work experience": "Berufserfahrung",
+		"Achievements": "Erfolge",
+		"Side Projects": "Nebenprojekte",
+		"Job description": "Stellenbeschreibung",
+		"Submit": "Einreichen"
+	};
 
+	function translate(){
+		const labels = document.querySelectorAll("label");
+		labels.forEach(label => {
+			const text = label.textContent;
+			if(translations[text]){
+				label.textContent = label.dataset.originalText || ;
+			}
+			else{
+
+</script>
 </body>
 </html>

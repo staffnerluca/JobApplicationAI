@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import QueryDict
 import os
+import zipfile
 from django.http import FileResponse, HttpResponse, JsonResponse
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 import openai
@@ -12,7 +14,7 @@ from .forms import fRegister
 
 
 # GLOBAL vars
-openai.api_key = "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"
+openai.api_key = "YOUR API KEY HERE"
 
 
 # RETURN PAGES
@@ -20,6 +22,7 @@ def index(request):
     return render(request, "index.html")
 
 
+@login_required
 def app(request):
     return render(request, "app.html")
 
@@ -72,6 +75,7 @@ def saveUserDataToDB(request):
 
 # PROMPT GENERATION AND GPT
 def createPrompt(data, ty):
+    # TODO find better prompt, because the results are not that great some of the time
     prompt = f"Write a short and beautiful {ty} in LaTex. "
     prompt += "The name of the applicant is "+data.GET["name"]+"; "
     prompt += "He/she is applying to a position as "+data.GET["position"]+" "
@@ -101,11 +105,11 @@ def getOutputFromChatGPT(prompt, numTokens):
 
 
 # CREATE PDF
-def compileToPDF(file):
+def compileToPDF(file, folder):
     try:
         if not os.path.exists("ApplicationAI/output"):
             os.makedirs("ApplicationAI/output")
-        pro = subprocess.Popen(["pdflatex", "-output-directory", "ApplicationAI/output", "ApplicationAI/output/EngelUndTeufel.tex"])
+        pro = subprocess.Popen(["pdflatex", "-output-directory", "ApplicationAI/output", "ApplicationAI/output/"+file+".tex"])
         pro.communicate()
         return True
     except subprocess.CalledProcessError as e:
@@ -113,31 +117,41 @@ def compileToPDF(file):
         return False
 
 
-def createNameForPDF(ty):
-    return ty
+def createNameForFolder(request):
+    user = request.user
+    fName = user.name.replace(" ", "")+user.id+user.requestNumber
+    return fName
 
 
-def createDoc(request, ty):
+def createDoc(request, ty, foName):
     request = createExampleData(request)
     prompt = createPrompt(request, ty)
     print(prompt)
     print(getOutputFromChatGPT(prompt, 3900))
-    name = createNameForPDF()
-    compileToPDF(name+".tex")
+    compileToPDF(ty+".tex", foName)
 
 
 def removeOldFiles(name):
     pass
 
 
-def zipPDFs(request):
-    pass
+def zipFolder(request, foName):
+    path = "ApplicationAI/output/"+foName
+    with zipfile.ZipFile(path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, _, files in os.walk(path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, path)
+                zipf.write(file_path, arcname)
 
 
 # MAIN
 def download(request):
-    createDoc(request, "CV")
-    fileName = "EngelUndTeufel.pdf"
+    foName = createNameForFolder(request)
+    createDoc(request, "CV", foName)
+    createDoc(request, "Cover Letter", foName)
+    createDoc(request, "Motivation Letter", foName)
+    fileName = "CV.pdf"
     dName = "CV.pdf"
     filePath = os.path.join(settings.BASE_DIR, "ApplicationAI/output", fileName)
     file = open(filePath, 'rb')
