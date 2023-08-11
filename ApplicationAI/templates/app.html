@@ -20,10 +20,11 @@
 <body>
   <div class="container">
     <div class="row justify-content-end">
+	    <button class="btn btn-primary" id="btnTranslate">Translate to German</button>
     </div>
     <div class="row">
       <div class="col-md-12">
-	      <center><h1 class="tall-heading">Job-Applicaton.AI</h1></center>
+	      <center><h1 class="tall-heading" id="mainHeading">Job-Application.AI</h1></center>
       </div>
     </div>
     <form action="download">
@@ -108,18 +109,46 @@
 		"Achievements": "Erfolge",
 		"Side Projects": "Nebenprojekte",
 		"Job description": "Stellenbeschreibung",
-		"Submit": "Einreichen"
+		"Submit": "Einreichen",
+		"Translate to German": "Translate to English"
 	};
 
-	function translate(){
-		const labels = document.querySelectorAll("label");
-		labels.forEach(label => {
-			const text = label.textContent;
-			if(translations[text]){
-				label.textContent = label.dataset.originalText || ;
-			}
-			else{
+	function translate() {
+	    const mainHeading = document.getElementById("mainHeading");
+	    const labels = document.querySelectorAll("label");
+	    const buttons = document.querySelectorAll("button");
 
+	    if (mainHeading.textContent === "Job-Application.AI") {
+		mainHeading.textContent = translations[mainHeading.textContent];
+		labels.forEach(label => {
+			label.textContent = translations[label.textContent];
+		});
+		buttons.forEach(button =>{
+			button.textContent = translations[button.textContent];
+		})
+	    } else {
+		const keysAr = Object.keys(translations)
+		mainHeading.textContent = keysAr[0];
+		labels.forEach(label => {
+		    for (const key in translations) {
+			if (translations[key] === label.textContent) {
+			    	label.textContent = key;
+			}
+		    }
+		});
+		buttons.forEach(button => {
+		    for (const key in translations) {
+			if (translations[key] === button.textContent) {
+			    	button.textContent = key;
+			}
+		    }
+	    })
+	}
+	}
+	document.addEventListener("DOMContentLoaded", function() {
+    		const btnTranslate = document.getElementById("btnTranslate");
+    		btnTranslate.onclick = translate;
+	});
 </script>
 </body>
 </html>
