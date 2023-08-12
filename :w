@@ -119,8 +119,7 @@ def compileToPDF(file, folder):
 
 def createNameForFolder(request):
     user = request.user
-    fName = str(user.fullName).replace(" ", "")
-    fName += str(user.requestNumber)
+    fName = user.name.replace(" ", "")+user.id+user.requestNumber
     return fName
 
 
@@ -148,7 +147,6 @@ def zipFolder(request, foName):
 
 # MAIN
 def download(request):
-    createExampleData(request)
     saveUserDataToDB(request)
     foName = createNameForFolder(request)
     createDoc(request, "CV", foName)

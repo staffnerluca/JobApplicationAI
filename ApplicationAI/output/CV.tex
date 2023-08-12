@@ -1,0 +1,81 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+\titleformat{\section}
+{\large\bfseries}
+{}
+{0em}
+{}[\titlerule]
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center}
+    \textbf{\LARGE John Doe}
+\end{center}
+
+\section*{Contact Information}
+\begin{tabular}{l l}
+    Address: & 123 Main Street, City, Country \\
+    Phone: & (123) 456-7890 \\
+    Email: & johndoe@example.com \\
+    LinkedIn: & \href{https://www.linkedin.com/in/johndoe}{linkedin.com/in/johndoe} \\
+    GitHub: & \href{https://github.com/johndoe}{github.com/johndoe}
+\end{tabular}
+
+\section*{Education}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Bachelor of Science in Computer Science} \\
+    University of XYZ \\
+    Graduation Date: May 20XX
+\end{itemize}
+
+\section*{Work Experience}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Software Engineer} \\
+    ABC Tech Solutions, City, Country \\
+    Dates: June 20XX - Present
+    \begin{itemize}
+        \item Developed and maintained software applications for clients using Java and Spring framework.
+        \item Collaborated with cross-functional teams to design and implement new features.
+        \item Improved performance and scalability of existing systems, resulting in a 20% reduction in response times.
+    \end{itemize}
+    
+    \item \textbf{Intern} \\
+    DEF Software, City, Country \\
+    Dates: May 20XX - August 20XX
+    \begin{itemize}
+        \item Assisted in testing and debugging software modules for a mobile application.
+        \item Participated in code reviews and contributed to discussions on software design and architecture.
+    \end{itemize}
+\end{itemize}
+
+\section*{Skills}
+\begin{itemize}[leftmargin=*]
+    \item Programming Languages: Java, Python, C++
+    \item Web Technologies: HTML, CSS, JavaScript, Spring Framework
+    \item Version Control: Git
+    \item Database Management: SQL, MongoDB
+\end{itemize}
+
+\section*{Projects}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Online Store Website} (GitHub: \href{https://github.com/johndoe/online-store}{github.com/johndoe/online-store})
+    \begin{itemize}
+        \item Developed a responsive e-commerce website using HTML, CSS, and JavaScript.
+        \item Integrated PayPal payment gateway for secure transactions.
+    \end{itemize}
+    
+    \item \textbf{Personal Budget Tracker App} (GitHub: \href{https://github.com/johndoe/budget-tracker}{github.com/johndoe/budget-tracker})
+    \begin{itemize}
+        \item Designed and implemented a budget tracking application using Python and SQLite.
+        \item Allowed users to input and categorize expenses, generating visual reports of spending habits.
+    \end{itemize}
+\end{itemize}
+
+\end{document}
+
