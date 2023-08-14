@@ -24,7 +24,8 @@ def index(request):
 
 @login_required
 def app(request):
-    return render(request, "app.html")
+    userData = Users.objects.get(id=request.user.id)
+    return render(request, "app.html", {"userData": userData})
 
 
 # USER
@@ -148,18 +149,19 @@ def zipFolder(request, foName):
 
 # MAIN
 def download(request):
-    createExampleData(request)
+    request = createExampleData(request)
     saveUserDataToDB(request)
-    foName = createNameForFolder(request)
-    createDoc(request, "CV", foName)
-    createDoc(request, "Cover Letter", foName)
-    createDoc(request, "Motivation Letter", foName)
+    #foName = createNameForFolder(request)
+    #createDoc(request, "CV", foName)
+    #createDoc(request, "Cover Letter", foName)
+    #createDoc(request, "Motivation Letter", foName)
     fileName = "CV.pdf"
     dName = "CV.pdf"
     filePath = os.path.join(settings.BASE_DIR, "ApplicationAI/output", fileName)
     file = open(filePath, 'rb')
     response = FileResponse(file, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename='+dName
+    return render(request, "index.html")
     return response
 
 

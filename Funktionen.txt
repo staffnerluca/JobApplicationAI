@@ -1,6 +1,0 @@
-Login
-Register
-
-User: Name, Password, UserID
-
-

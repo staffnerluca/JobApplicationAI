@@ -10,9 +10,9 @@
 	 height: 100px;
 	 font-size: 70px;
     }
-    /* Add some margin to the buttons */
-    .buttons {
-      margin-top: 10px;
+    .btn-primary{
+	margin-right: 10px;
+	margin-top: 10px;
     }
 
   </style>
@@ -21,6 +21,7 @@
   <div class="container">
     <div class="row justify-content-end">
 	    <button class="btn btn-primary" id="btnTranslate">Translate to German</button>
+	    <button class="btn btn-primary" id="btnClean">Clean</button>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -31,7 +32,7 @@
     <div class="row">
       <div class="col-md-6">
         <label for="name">Full Name</label>
-        <input name = "name" type="text" id="name" class="form-control">
+	<input name = "name" type="text" id="name" class="form-control" value="{{ userData.fullName }}">
       </div>
       <div class="col-md-6">
         <label for="companyName">Name of the company</label>
@@ -47,37 +48,37 @@
       </div>
       <div class="col-md-6">
         <label for="positionNow">Position now (leave empty if you are not working)</label>
-        <input name="positionNow" type="text" id="positionNow" class="form-control">
+	<input name="positionNow" type="text" id="positionNow" class="form-control" value="{{ userData.positionNow }}">
       </div>
       <div class="col-md-6">
         <label for="companyNow">Company now (leave empty if you are not working)</label>
-        <input name="companyNow" type="text" id="companyNow" class="form-control">
+	<input name="companyNow" type="text" id="companyNow" class="form-control" value="{{userData.companyNow}}">
       </div>
     </div>
 	<div class="row">
 	  <div class="col-md-6">
 	    <label for="multiline">Education</label>
-	    <textarea name="education" id="education" class="form-control" rows="4"></textarea>
+	    <textarea name="education" id="education" class="form-control" rows="4">{{userData.education}}</textarea>
 	  </div>
 	  <div class="col-md-6">
 	    <label for="multiline">Skills</label>
-	    <textarea name="skills" id="skills" class="form-control" rows="4"></textarea>
+	    <textarea name="skills" id="skills" class="form-control" rows="4">{{userData.skills}}</textarea>
 	  </div>
 	</div>
 	<div class="row">
 	  <div class="col-md-6">
 	    <label for="multiline">Work experience</label>
-	    <textarea name="experience" id="experience" class="form-control" rows="4"></textarea>
+	    <textarea name="experience" id="experience" class="form-control" rows="4">{{userData.experience}}</textarea>
 	  </div>
 	  <div class="col-md-6">
 	    <label for="multiline">Achievements</label>
-	    <textarea name="achievements" id="achievements" class="form-control" rows="4"></textarea>
+	    <textarea name="achievements" id="achievements" class="form-control" rows="4">{{userData.achievements}}</textarea>
 	  </div>
 	</div>	
 	<div class="row">
 	  <div class="col-md-6">
 	    <label for="multiline">Side Projects</label>
-	    <textarea name="sideProjects" id="sideProjects" class="form-control" rows="4"></textarea>
+	    <textarea name="sideProjects" id="sideProjects" class="form-control" rows="4">{{userData.sideProjects}}</textarea>
 	  </div>
 	  <div class="col-md-6">
 	    <label for="multiline">Job description</label>
@@ -145,9 +146,22 @@
 	    })
 	}
 	}
+
+	function clean(){
+		const inputs = document.querySelectorAll("input");
+		inputs.forEach(input =>{
+			input.value = "";
+		})
+		const areas = document.querySelectorAll("textarea")
+		areas.forEach(area =>{
+			area.textContent = "";
+		})
+	}
+
 	document.addEventListener("DOMContentLoaded", function() {
     		const btnTranslate = document.getElementById("btnTranslate");
     		btnTranslate.onclick = translate;
+		btnClean.onclick = clean
 	});
 </script>
 </body>
