@@ -11,6 +11,8 @@ import subprocess
 from django.views.decorators.csrf import csrf_exempt
 from .models import Users
 from .forms import fRegister
+import tempfile
+import shutil
 
 
 # GLOBAL vars
@@ -57,6 +59,8 @@ def login_view(request):
 
 def updateUserNumber(request):
     user = Users.objects.get(id=request.user.id)
+    if user.requestNumber is None:
+        user.requestNumber = 0
     user.requestNumber += 1
     user.save()
 
@@ -108,9 +112,10 @@ def getOutputFromChatGPT(prompt, numTokens):
 # CREATE PDF
 def compileToPDF(file, folder):
     try:
-        if not os.path.exists("ApplicationAI/output"):
-            os.makedirs("ApplicationAI/output")
-        pro = subprocess.Popen(["pdflatex", "-output-directory", "ApplicationAI/output", "ApplicationAI/output/"+file+".tex"])
+        if not os.path.exists("ApplicationAI/output/"+folder):
+            os.makedirs("ApplicationAI/output/"+folder)
+        file = file.replace(" ", "")
+        pro = subprocess.Popen(["pdflatex", "-output-directory", "ApplicationAI/output/"+folder, "ApplicationAI/output/"+file+".tex"])
         pro.communicate()
         return True
     except subprocess.CalledProcessError as e:
@@ -126,10 +131,8 @@ def createNameForFolder(request):
 
 
 def createDoc(request, ty, foName):
-    request = createExampleData(request)
-    prompt = createPrompt(request, ty)
-    print(prompt)
-    print(getOutputFromChatGPT(prompt, 3900))
+    #prompt = createPrompt(request, ty)
+    #out = getOutputFromChatGPT(prompt, 3900)
     compileToPDF(ty+".tex", foName)
 
 
@@ -138,30 +141,30 @@ def removeOldFiles(name):
 
 
 def zipFolder(request, foName):
-    path = "ApplicationAI/output/"+foName
-    with zipfile.ZipFile(path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    path = os.path.join(settings.BASE_DIR, "ApplicationAI/output", f"{foName}")
+    with zipfile.ZipFile(path+".zip", 'w') as zipf:
         for root, _, files in os.walk(path):
             for file in files:
-                file_path = os.path.join(root, file)
-                arcname = os.path.relpath(file_path, path)
-                zipf.write(file_path, arcname)
+                filePath = os.path.join(root, file)
+                arcname = os.path.relpath(filePath, path)
+                zipf.write(filePath, arcname)
 
 
 # MAIN
 def download(request):
     request = createExampleData(request)
     saveUserDataToDB(request)
-    #foName = createNameForFolder(request)
-    #createDoc(request, "CV", foName)
-    #createDoc(request, "Cover Letter", foName)
-    #createDoc(request, "Motivation Letter", foName)
-    fileName = "CV.pdf"
-    dName = "CV.pdf"
-    filePath = os.path.join(settings.BASE_DIR, "ApplicationAI/output", fileName)
-    file = open(filePath, 'rb')
-    response = FileResponse(file, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename='+dName
-    return render(request, "index.html")
+    foName = createNameForFolder(request)
+    tempDir = tempfile.mkdtemp
+    createDoc(request, "CV", foName)
+    createDoc(request, "Cover Letter", foName)
+    createDoc(request, "Motivation Letter", foName)
+    zipFolder(request, foName)
+    shutil.rmtree(tempDir)
+    path = os.path.join(settings.BASE_DIR, "ApplicationAI/output", f"{foName}.zip")
+    with open(path, "rb") as zFo:
+        response = HttpResponse(zFo.read(), content_type = "application/zip")
+        response["Content-Disposition"] = f"attachment; filename='{foName}.zip'"
     return response
 
 
