@@ -154,6 +154,7 @@ def zipFolder(request, foName):
 def download(request):
     request = createExampleData(request)
     saveUserDataToDB(request)
+    updateUserNumber(request)
     foName = createNameForFolder(request)
     tempDir = tempfile.mkdtemp
     createDoc(request, "CV", foName)
