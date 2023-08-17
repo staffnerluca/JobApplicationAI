@@ -133,11 +133,15 @@ def createNameForFolder(request):
 def createDoc(request, ty, foName):
     #prompt = createPrompt(request, ty)
     #out = getOutputFromChatGPT(prompt, 3900)
-    compileToPDF(ty+".tex", foName)
+    compileToPDF(ty, foName)
 
 
-def removeOldFiles(name):
-    pass
+def removeNotPDFFiles(path):
+    for filename in os.listdir(path):
+        if not filename.endswith(".pdf"):
+            file = os.path.join(path, filename)
+            if os.path.isfile(file):
+                os.remove(file)
 
 
 def zipFolder(request, foName):
@@ -160,9 +164,11 @@ def download(request):
     createDoc(request, "CV", foName)
     createDoc(request, "Cover Letter", foName)
     createDoc(request, "Motivation Letter", foName)
+    path = os.path.join(settings.BASE_DIR, "ApplicationAI/output", f"{foName}")
+    removeNotPDFFiles(path)
     zipFolder(request, foName)
-    shutil.rmtree(tempDir)
-    path = os.path.join(settings.BASE_DIR, "ApplicationAI/output", f"{foName}.zip")
+    shutil.rmtree(path)
+    path += ".zip"
     with open(path, "rb") as zFo:
         response = HttpResponse(zFo.read(), content_type = "application/zip")
         response["Content-Disposition"] = f"attachment; filename='{foName}.zip'"
